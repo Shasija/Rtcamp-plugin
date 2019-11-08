@@ -157,6 +157,6 @@ function create_booktag_tax() {
 
 }
 add_action( 'init', 'create_booktag_tax' );
-
+include 'my-metabox.php';
 
 ?>
