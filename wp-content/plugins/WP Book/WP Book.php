@@ -85,4 +85,78 @@ function custom_post_type() {
     */
      
     add_action( 'init', 'custom_post_type');
+	
+	
+
+    // Register Taxonomy Book Category
+function create_bookcategory_tax() {
+
+	$labels = array(
+		'name'              => _x( 'Book Category', 'taxonomy general name', 'textdomain' ),
+		'singular_name'     => _x( 'Book Category', 'taxonomy singular name', 'textdomain' ),
+		'search_items'      => __( 'Search Book Category', 'textdomain' ),
+		'all_items'         => __( 'All Book Category', 'textdomain' ),
+		'parent_item'       => __( 'Parent Book Category', 'textdomain' ),
+		'parent_item_colon' => __( 'Parent Book Category:', 'textdomain' ),
+		'edit_item'         => __( 'Edit Book Category', 'textdomain' ),
+		'update_item'       => __( 'Update Book Category', 'textdomain' ),
+		'add_new_item'      => __( 'Add New Book Category', 'textdomain' ),
+		'new_item_name'     => __( 'New Book Category Name', 'textdomain' ),
+		'menu_name'         => __( 'Book Category', 'textdomain' ),
+	);
+	$args = array(
+		'labels' => $labels,
+		'description' => __( '', 'textdomain' ),
+		'hierarchical' => true,
+		'public' => true,
+		'publicly_queryable' => true,
+		'show_ui' => true,
+		'show_in_menu' => true,
+		'show_in_nav_menus' => true,
+		'show_tagcloud' => true,
+		'show_in_quick_edit' => true,
+		'show_admin_column' => false,
+		'show_in_rest' => true,
+	);
+	register_taxonomy( 'bookcategory', array('book'), $args );
+
+}
+add_action( 'init', 'create_bookcategory_tax' );
+
+// Register Taxonomy Book Tag(non-hierarchical)
+function create_booktag_tax() {
+
+	$labels = array(
+		'name'              => _x( 'Book Tag', 'taxonomy general name', 'textdomain' ),
+		'singular_name'     => _x( 'Book Tag', 'taxonomy singular name', 'textdomain' ),
+		'search_items'      => __( 'Search Book Tag', 'textdomain' ),
+		'all_items'         => __( 'All Book Tag', 'textdomain' ),
+		'parent_item'       => __( 'Parent Book Tag', 'textdomain' ),
+		'parent_item_colon' => __( 'Parent Book Tag:', 'textdomain' ),
+		'edit_item'         => __( 'Edit Book Tag', 'textdomain' ),
+		'update_item'       => __( 'Update Book Tag', 'textdomain' ),
+		'add_new_item'      => __( 'Add New Book Tag', 'textdomain' ),
+		'new_item_name'     => __( 'New Book Tag Name', 'textdomain' ),
+		'menu_name'         => __( 'Book Tag', 'textdomain' ),
+	);
+	$args = array(
+		'labels' => $labels,
+		'description' => __( '', 'textdomain' ),
+		'hierarchical' => false,
+		'public' => true,
+		'publicly_queryable' => true,
+		'show_ui' => true,
+		'show_in_menu' => true,
+		'show_in_nav_menus' => true,
+		'show_tagcloud' => true,
+		'show_in_quick_edit' => true,
+		'show_admin_column' => false,
+		'show_in_rest' => true,
+	);
+	register_taxonomy( 'booktag', array('book'), $args );
+
+}
+add_action( 'init', 'create_booktag_tax' );
+
+
 ?>
