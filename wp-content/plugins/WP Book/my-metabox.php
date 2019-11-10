@@ -1,4 +1,5 @@
 <?php
+//include 'custom-table.php';
 class Book_Info_Meta_Box
 {
     public function __construct()
@@ -26,6 +27,8 @@ class Book_Info_Meta_Box
             'default'
         );
     }
+    
+    
 
     public function render_metabox($post)
     {
@@ -135,3 +138,4 @@ class Book_Info_Meta_Box
 }
 
 new Book_Info_Meta_Box;
+?>

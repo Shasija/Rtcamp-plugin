@@ -159,4 +159,36 @@ function create_booktag_tax() {
 add_action( 'init', 'create_booktag_tax' );
 include 'my-metabox.php';
 
+function book_meta_install() {
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'bookmeta';
+    $charset_collate = $wpdb->get_charset_collate();
+    //$packagetable = $tableprefix . 'bookmeta';
+    if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
+    $sql = "CREATE TABLE " . $table_name . " (
+        meta_id INT NOT NULL AUTO_INCREMENT, 
+        Author TEXT NOT NULL, 
+        Year TEXT NOT NULL, 
+        Price FLOAT NOT NULL, 
+        Publisher TEXT NOT NULL,
+        Edition INT NOT NULL,
+        PRIMARY KEY  (meta_id)
+    ) ". $charset_collate .";";
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php'); 
+    dbDelta($sql);
+    }
+    /*$install_query = "CREATE TABLE $table_name (
+        meta_id bigint(20) unsigned NOT NULL auto_increment,
+        post_id bigint(20) unsigned NOT NULL,
+        meta_key varchar(255) default NULL,
+        meta_value longtext,
+        PRIMARY KEY  (meta_id),
+        KEY badge (badge_id));";
+       
+    $data=dbDelta( $install_query );
+    echo $data;*/
+
+
+}
+register_activation_hook(__FILE__,'book_meta_install');
 ?>
